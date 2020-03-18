@@ -5,8 +5,14 @@ const KEY =
 const gw2 = axios.create({
   baseURL: "https://api.guildwars2.com/v2/",
   params: {
-    access_token: KEY
+    access_token: KEY,
+  },
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
   }
 });
-gw2.defaults.headers.common["Authorization"] = `Bearer ${KEY}`;
+
+gw2.defaults.headers.post['Authorization'] = `Bearer ${KEY}`;
+
 export default gw2;
