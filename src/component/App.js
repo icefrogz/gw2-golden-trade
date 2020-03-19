@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import guildwars2 from "../api/guildwars2";
-class App extends React.Component {
-  something = async test => {
-    await guildwars2
-      .get("account", {
+import AchievementInfo from "./AchievementInfo";
+const App = () => {
+  const [achievementsDaily, setAchievementsDaily] = useState({});
+  useEffect(() => {
+    const fetchAchievementsDaily = async () => {
+      const response = await guildwars2.get("achievements/daily", {
         params: {}
-      })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
       });
-  };
-  render() {
-    return <div>{console.log(this.something())}</div>;
-  }
-}
+
+      setAchievementsDaily(response.data);
+    };
+    fetchAchievementsDaily();
+  }, []);
+
+  return (
+    <div>
+      {Object.entries(achievementsDaily).map((sections) => {
+        return (
+          <AchievementInfo
+            key={sections[0]}
+            title={sections[0]}
+            sections={sections[1]}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default App;
