@@ -17,7 +17,7 @@ const AchievementInfo = ({ title, sections }) => {
   return (
     <div className="panel-group">
       <div className="panel panel-default">
-        <div className="panel-heading">{title}</div>
+        <div className="panel-heading text-capitalize">{title}</div>
 
         <div className="panel-body">
           <ul className="list-group">
