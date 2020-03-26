@@ -15,8 +15,20 @@ const AchievementInfo = ({ title, sections }) => {
     achievementDaily();
   }, []);
   return (
-    <div>
-      <div>{dailies.map((j) => j.name)}</div>
+    <div className="panel-group">
+      <div className="panel panel-default">
+        <div className="panel-heading">{title}</div>
+
+        <div className="panel-body">
+          <ul className="list-group">
+            {dailies.map((j) => (
+              <li key={j.id} className="list-group-item">
+                {j.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

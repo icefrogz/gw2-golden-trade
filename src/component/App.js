@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       {Object.entries(achievementsDaily).map((sections) => {
         return (
           <AchievementInfo
