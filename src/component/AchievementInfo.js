@@ -9,7 +9,7 @@ const AchievementInfo = ({ title, sections }) => {
           ids: sections.map((k) => k.id).join(",")
         }
       });
-      console.log(response.data);
+
       setDailies(response.data);
     };
     achievementDaily();
