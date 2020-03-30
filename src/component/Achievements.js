@@ -16,7 +16,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container py-3">
       <div className="row">
         {Object.entries(achievementsDaily)
           .filter((j) => j[1].length > 0)

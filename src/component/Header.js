@@ -2,14 +2,22 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 const header = () => {
   return (
-    <nav className="navbar navbar-dark bg-dark shadow-sm">
-      <div className="container d-flex justify-content-between">
-        <NavLink exact activeClassName="active" to="/">
-          Home
-        </NavLink>
-        <NavLink exact activeClassName="active" to="/achievements">
-          Achievement
-        </NavLink>
+    <nav className="navbar navbar-expand-lg  navbar-dark bg-dark shadow-sm">
+      <div className="container">
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <NavLink exact className="nav-link" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink exact className="nav-link" to="/achievements">
+                Daily
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
