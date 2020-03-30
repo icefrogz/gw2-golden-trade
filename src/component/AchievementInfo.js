@@ -13,7 +13,7 @@ const AchievementInfo = ({ title, sections }) => {
       setDailies(response.data);
     };
     achievementDaily();
-  }, []);
+  }, [sections]);
   return (
     <div className="panel-group">
       <div className="panel panel-default">
