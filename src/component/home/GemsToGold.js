@@ -18,8 +18,23 @@ const GemsToGold = () => {
   }, [gems]);
 
   return (
-    <div>
-      Gold is : {gold} Gems is: {gems}
+    <div className="container h-100">
+      <div className="d-flex align-items-center justify-content-center h-100">
+        <div className="card align-middle " style={{ width: "18rem" }}>
+          <div className="card-body">
+            <p className="card-text">
+              {" "}
+              Gold is : {gold} Gems is: {gems}
+            </p>
+            <form>
+              <div className="form-group">
+                <label form="customExchange">Custom Exchange</label>
+                <input type="text" class="form-control" id="customExchange" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
