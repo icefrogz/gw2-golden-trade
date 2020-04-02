@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import guildwars2 from "../../api/guildwars2";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const GemsToGold = () => {
   const [gold, setGold] = useState(0);
   const [gems, setGems] = useState(100);
@@ -26,10 +26,15 @@ const GemsToGold = () => {
               {" "}
               Gold is : {gold} Gems is: {gems}
             </p>
+            <FontAwesomeIcon icon="coffee" />
             <form>
               <div className="form-group">
                 <label form="customExchange">Custom Exchange</label>
-                <input type="text" class="form-control" id="customExchange" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="customExchange"
+                />
               </div>
             </form>
           </div>
