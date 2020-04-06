@@ -4,68 +4,66 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGem } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight, faCoins } from "@fortawesome/free-solid-svg-icons";
 import "../../stylesheets/gemsToGold.scss";
-const GemsToGold = () => {
-  const [defaultGold, setDefaultGold] = useState(0);
+const GoldToGems = () => {
+  const [defaultGems, setDefaultGems] = useState(0);
   const [gold, setGold] = useState(0);
   const [gems, setGems] = useState(0);
 
-  async function gemsToGold(gemsToConvert) {
+  async function goldToGems(coinsToConvert) {
     return await guildwars2
-      .get("commerce/exchange/gems", {
+      .get("commerce/exchange/coins", {
         params: {
-          quantity: gemsToConvert
+          quantity: coinsToConvert * 10000
         }
       })
       .then((response) => {
-        return Math.floor(response.data.quantity / 10000);
+        return response.data.quantity;
       });
   }
 
   useEffect(() => {
-    gemsToGold(100).then((convertedGold) => {
-      setDefaultGold(convertedGold);
+    goldToGems(100).then((convertedGems) => {
+      setDefaultGems(convertedGems);
     });
   }, []);
 
   useEffect(() => {
-    gemsToGold(gems).then((convertedGold) => {
-      setGold(convertedGold);
+    goldToGems(gold).then((convertedGems) => {
+      setGems(convertedGems);
     });
-  }, [gems]);
+  }, [gold]);
 
   return (
     <div className="col">
       <div className="card align-middle ">
         <div className="card-body">
-          <p className="card-text">
-            {`Current Convertion Gold is : ${defaultGold} Gems is: 100`}
-          </p>
+          <p className="card-text">{`Current Convertion Gems is : ${defaultGems} Coins is: 100`}</p>
 
           <form>
             <div className="form-group ">
-              <label htmlFor="gem" className="m-2">
-                <FontAwesomeIcon className="mr-2" icon={faGem} />
-                <span>{gems}</span>
+              <label htmlFor="coins" className="m-2">
+                <FontAwesomeIcon className="mr-2" icon={faCoins} />
+                <span>{gold}</span>
               </label>
 
               <label htmlFor="exchangeAlt" className="m-2">
                 <FontAwesomeIcon className="" icon={faArrowRight} />
               </label>
 
-              <label htmlFor="coins" className="m-2">
-                <FontAwesomeIcon className="mr-2" icon={faCoins} />
-                <span>{gold}</span>
+              <label htmlFor="faGem" className="m-2">
+                <FontAwesomeIcon className="mr-2" icon={faGem} />
+                <span>{gems}</span>
               </label>
             </div>
 
             <div className="form-group">
-              <label form="customExchange">Custom Exchange Gems</label>
+              <label form="customExchange">Custom Exchange Gold</label>
               <input
                 type="number"
                 className="form-control"
                 id="customExchange"
-                value={gems}
-                onChange={(e) => setGems(e.target.value)}
+                value={gold}
+                onChange={(e) => setGold(e.target.value)}
               />
             </div>
           </form>
@@ -75,4 +73,4 @@ const GemsToGold = () => {
   );
 };
 
-export default GemsToGold;
+export default GoldToGems;
