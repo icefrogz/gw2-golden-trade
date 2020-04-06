@@ -39,13 +39,14 @@ const GemsToGold = () => {
         <div className="card align-middle " style={{ width: "18rem" }}>
           <div className="card-body">
             <p className="card-text">
-              {`Gold is : ${defaultGold} Gems is: 100`}
+              {` Current Convertion Gold is : ${defaultGold} Gems is: 100`}
             </p>
 
             <form>
               <div className="form-group ">
                 <label htmlFor="gem" className="m-2">
-                  <FontAwesomeIcon className="" icon={faGem} />
+                  <FontAwesomeIcon className="mr-2" icon={faGem} />
+                  <span>{gems}</span>
                 </label>
 
                 <label htmlFor="exchangeAlt" className="m-2">
@@ -53,7 +54,8 @@ const GemsToGold = () => {
                 </label>
 
                 <label htmlFor="coins" className="m-2">
-                  <FontAwesomeIcon className="" icon={faCoins} />
+                  <FontAwesomeIcon className="mr-2" icon={faCoins} />
+                  <span>{gold}</span>
                 </label>
               </div>
 
@@ -63,7 +65,8 @@ const GemsToGold = () => {
                   type="number"
                   className="form-control"
                   id="customExchange"
-                  onChange={}
+                  value={gems}
+                  onChange={(e) => setGems(e.target.value)}
                 />
               </div>
             </form>
