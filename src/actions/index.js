@@ -1,4 +1,6 @@
-import {FETCH_DAILY_ACHIEVEMENTS
-}from './types';
-import gw2 from '../api/guildwars2';
-
+const saveApiKey = (key) => {
+  return {
+    type: "SAVE_API_KEY",
+    payload: key,
+  };
+};

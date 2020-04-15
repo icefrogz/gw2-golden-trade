@@ -17,6 +17,8 @@ const Header = () => {
                 Daily
               </NavLink>
             </li>
+          </ul>
+          <ul className="navbar-nav">
             <li className="nav-item">
               <GoogleAuth />
             </li>
