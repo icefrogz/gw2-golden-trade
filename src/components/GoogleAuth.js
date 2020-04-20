@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../actions/auth";
 const KEY =
   "862357562992-6ef84pk3baeh8o71hknmqh6d7iqvquaq.apps.googleusercontent.com";
 const SECRET = "NDBLyBSQ07mAcuP4ieRpczjc";
@@ -27,8 +29,14 @@ const GoogleAuth = () => {
     }
   }
 
-  function onAuthChange() {
-    setSignedIn(auth.current.isSignedIn.get());
+  function onAuthChange(isSignedIn) {
+    //setSignedIn(auth.current.isSignedIn.get());
+
+    if (isSignedIn) {
+      signIn();
+    } else {
+      signOut();
+    }
   }
 
   function onSignIn() {
@@ -50,7 +58,8 @@ const GoogleAuth = () => {
           auth.current = window.gapi.auth2.getAuthInstance();
           //get the client status
 
-          setSignedIn(auth.current.isSignedIn.get());
+          // setSignedIn(auth.current.isSignedIn.get());
+          onAuthChange(auth.isSignedIn.get());
           auth.current.isSignedIn.listen(onAuthChange);
           //set auth accordingly to the status
         });
@@ -58,4 +67,9 @@ const GoogleAuth = () => {
   }, []);
   return <>{renderAuthButton()}</>;
 };
-export default GoogleAuth;
+
+const mapStateToProps = (state) => {
+  return { isSignedin: state.auth.isSignedIn };
+};
+
+export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
