@@ -32,7 +32,13 @@ const GoogleAuth = () => {
   // hbs ini reducernya bakal update redux store pake return value untuk case 'SIGN_IN'
   // return { ...state, isSignedIn: true };
   // ...state <- spread function
-  // misalnya sta
+  // misalnya state = { isSignedIn: null }
+  // trus return { ...state, isSignedIn: true }
+  // ...state bakal di spread jadi -> { isSignedIn: null, isSignedIn: true }
+  // since yg true yg terakhir, value isSignedIn bakal ke overwrite jadi true
+  // alhasil, { ...state, isSignedIn: true } => { isSignedIn: true }
+  // tapi kalo state ada key lain, misalnya: { isSignedIn: null, otherKey: 'value' }
+  // { ...state, isSignedIn: true } => { isSignedIn: true, otherKey: 'value' }
 
   const dispatch = useDispatch();
 
@@ -71,7 +77,7 @@ const GoogleAuth = () => {
           //set auth accordingly to the status
         });
     });
-  }, []);
+  }, [onAuthChange]);
 
   if (isSignedIn === null) {
     return null;
