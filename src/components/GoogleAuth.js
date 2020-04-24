@@ -13,6 +13,10 @@ const GoogleAuth = () => {
   // useSelector itu sama kyk mapStateToProps
   // bedanya cuma kalo mapStateToProps itu set ke props component
   // kalo useSelector ini set ke constant/variable di dalem componentnya
+
+  // const mapStateToProps = (state) => {
+  //   return { isSignedin: state.auth.isSignedIn };
+  // };
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
 
   // buat panggil actionreducer, perlu pake dispatch
@@ -95,10 +99,6 @@ const GoogleAuth = () => {
     );
   }
 };
-
-// const mapStateToProps = (state) => {
-//   return { isSignedin: state.auth.isSignedIn };
-// };
 
 // export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
 export default GoogleAuth;
