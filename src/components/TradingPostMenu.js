@@ -1,20 +1,32 @@
 import React, { useEffect, useState, useRef } from "react";
 import guildwars2 from "../api/guildwars2";
-const TradingPostMenu = () => {
+const TradingPost = () => {
   const apiKey = localStorage.getItem("apiKey");
   const inputTest = useRef(null);
-
-  async function TradingPostTracker() {
-    return await guildwars2
-      .get("/commerce/transactions", {
+  const [results, setResults] = useState([]);
+  async function tradingPostTracker() {
+    await guildwars2
+      .get("/commerce/transactions/history/sells", {
         params: {
-          Authorization: `Bearer ${apiKey}`,
+          access_token: apiKey,
         },
       })
       .then((response) => {
-        console.log(Object.values(response));
+        console.log(response.data);
+        setResults(response.data);
+        // results.map((result) => {
+        //   console.log(result.id);
+        // });
       });
+
+    return null;
   }
+
+  useEffect(() => {
+    if (apiKey.length > 0) {
+      tradingPostTracker();
+    }
+  }, [apiKey]);
 
   // Store data
   function storeData() {
@@ -37,10 +49,12 @@ const TradingPostMenu = () => {
           />
         </div>
         <input className="btn-dark btn" type="submit" value="Submit" />
-        {TradingPostTracker()}
       </form>
+      {results.map((result) => {
+        return <div key={result.id}>{result.id}</div>;
+      })}
     </div>
   );
 };
 
-export default TradingPostMenu;
+export default TradingPost;

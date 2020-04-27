@@ -8,11 +8,11 @@ const gw2 = axios.create({
     access_token: KEY,
   },
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
 });
 
-gw2.defaults.headers.post['Authorization'] = `Bearer ${KEY}`;
+gw2.defaults.headers.post["Authorization"] = `Bearer ${KEY}`;
 
 export default gw2;
