@@ -1,32 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import guildwars2 from "../api/guildwars2";
+import React, { useRef } from "react";
+import SellHistory from "./trading-post/SellHistory";
+import BuyHistory from "./trading-post/BuyHistory";
 const TradingPost = () => {
   const apiKey = localStorage.getItem("apiKey");
   const inputTest = useRef(null);
-  const [results, setResults] = useState([]);
-  async function tradingPostTracker() {
-    await guildwars2
-      .get("/commerce/transactions/history/sells", {
-        params: {
-          access_token: apiKey,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setResults(response.data);
-        // results.map((result) => {
-        //   console.log(result.id);
-        // });
-      });
-
-    return null;
-  }
-
-  useEffect(() => {
-    if (apiKey.length > 0) {
-      tradingPostTracker();
-    }
-  }, [apiKey]);
 
   // Store data
   function storeData() {
@@ -50,9 +27,19 @@ const TradingPost = () => {
         </div>
         <input className="btn-dark btn" type="submit" value="Submit" />
       </form>
-      {results.map((result) => {
-        return <div key={result.id}>{result.id}</div>;
-      })}
+      <ul className="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            Active
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">
+            Disabled
+          </a>
+        </li>
+      </ul>
+      <SellHistory />
     </div>
   );
 };
