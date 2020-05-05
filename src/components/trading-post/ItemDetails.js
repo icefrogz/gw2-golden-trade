@@ -1,21 +1,25 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import guildwars2 from "../../api/guildwars2";
-
-const ItemDetails = ({ itemId, index, createdAt, purchasedAt }) => {
+import startCase from "lodash/startCase";
+import moment from "moment";
+const ItemDetails = ({ itemId, index, createdAt, purchasedAt, priceAt }) => {
   const [item, setItem] = useState({});
-  async function itemDetailsAllPurpose() {
-    const apiKey = localStorage.getItem("apiKey");
-    await guildwars2
-      .get(`items/${itemId}`, {
-        params: {
-          access_token: apiKey,
-        },
-      })
-      .then((response) => {
-        setItem(response.data);
-      });
-  }
+  const toStringConvert = new Date();
+
   useEffect(() => {
+    async function itemDetailsAllPurpose() {
+      const apiKey = localStorage.getItem("apiKey");
+
+      await guildwars2
+        .get(`items/${itemId}`, {
+          params: {
+            access_token: apiKey,
+          },
+        })
+        .then((response) => {
+          setItem(response.data);
+        });
+    }
     itemDetailsAllPurpose();
   }, [itemId]);
   return (
@@ -23,12 +27,13 @@ const ItemDetails = ({ itemId, index, createdAt, purchasedAt }) => {
       <td>{index + 1}</td>
       <td> {item.name}</td>
       <td>
-        <img src={item.icon} />
+        <img alt="icon" src={item.icon} />
       </td>
-      <td>{item.type}</td>
+      <td>{startCase(item.type)}</td>
       <td>{item.rarity}</td>
-      <td>{createdAt}</td>
-      <td>{purchasedAt}</td>
+      <td>{moment(createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}</td>
+      <td>{toStringConvert.toTimeString(purchasedAt)}</td>
+      <td>{priceAt}</td>
     </tr>
   );
 };

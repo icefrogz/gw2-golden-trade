@@ -4,21 +4,21 @@ import ItemDetails from "./ItemDetails";
 const SellHistory = () => {
   const [results, setResults] = useState([]);
   const apiKey = localStorage.getItem("apiKey");
-  async function tradingPostTracker() {
-    await guildwars2
-      .get("/commerce/transactions/history/sells", {
-        params: {
-          access_token: apiKey,
-        },
-      })
-      .then((response) => {
-        setResults(response.data);
-      });
-
-    return null;
-  }
 
   useEffect(() => {
+    async function tradingPostTracker() {
+      await guildwars2
+        .get("/commerce/transactions/history/sells", {
+          params: {
+            access_token: apiKey,
+          },
+        })
+        .then((response) => {
+          setResults(response.data);
+        });
+
+      return null;
+    }
     if (apiKey.length > 0) {
       tradingPostTracker();
     }
@@ -34,6 +34,7 @@ const SellHistory = () => {
           <th scope="col">Rarity</th>
           <th scope="col">Created At</th>
           <th scope="col">Purchased At</th>
+          <th scope="col">Price</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +46,7 @@ const SellHistory = () => {
               itemId={result.item_id}
               createdAt={result.created}
               purchasedAt={result.purchased}
+              priceAt={result.price}
             />
           );
         })}

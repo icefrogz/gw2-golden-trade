@@ -27,19 +27,36 @@ const TradingPost = () => {
         </div>
         <input className="btn-dark btn" type="submit" value="Submit" />
       </form>
-      <ul className="nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">
-            Active
+      <ul className="nav nav-tabs mt-1" role="tablist">
+        <li className="nav-item" id="sell-tab">
+          <a className="nav-link active" data-toggle="tab" href="#sell">
+            Sell
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">
-            Disabled
+        <li className="nav-item" id="buy-tab">
+          <a className="nav-link " data-toggle="tab" href="#buy" role="tab">
+            Buy
           </a>
         </li>
       </ul>
-      <SellHistory />
+      <div className="tab-content" id="tab-content" role="tab">
+        <div
+          className="tab-pane fade show active"
+          id="sell"
+          role="tabpanel"
+          aria-labelledby="sell-tab"
+        >
+          <SellHistory />
+        </div>
+        <div
+          className="tab-pane fade"
+          id="buy"
+          role="tabpanel"
+          aria-labelledby="buy-tab"
+        >
+          <BuyHistory />
+        </div>
+      </div>
     </div>
   );
 };

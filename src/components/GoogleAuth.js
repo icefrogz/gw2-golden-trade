@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut } from "../actions/auth";
 const KEY =
   "862357562992-6ef84pk3baeh8o71hknmqh6d7iqvquaq.apps.googleusercontent.com";
-const SECRET = "NDBLyBSQ07mAcuP4ieRpczjc";
 
 const GoogleAuth = () => {
   const auth = useRef(null);
