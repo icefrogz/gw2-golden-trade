@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut } from "../actions/auth";
 const KEY =
   "862357562992-6ef84pk3baeh8o71hknmqh6d7iqvquaq.apps.googleusercontent.com";
-const SECRET = "NDBLyBSQ07mAcuP4ieRpczjc";
 
 const GoogleAuth = () => {
   const auth = useRef(null);
@@ -13,6 +12,10 @@ const GoogleAuth = () => {
   // useSelector itu sama kyk mapStateToProps
   // bedanya cuma kalo mapStateToProps itu set ke props component
   // kalo useSelector ini set ke constant/variable di dalem componentnya
+
+  // const mapStateToProps = (state) => {
+  //   return { isSignedin: state.auth.isSignedIn };
+  // };
   const isSignedIn = useSelector((state) => state.auth.isSignedIn);
 
   // buat panggil actionreducer, perlu pake dispatch
@@ -95,10 +98,6 @@ const GoogleAuth = () => {
     );
   }
 };
-
-// const mapStateToProps = (state) => {
-//   return { isSignedin: state.auth.isSignedIn };
-// };
 
 // export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
 export default GoogleAuth;

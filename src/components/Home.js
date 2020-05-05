@@ -1,13 +1,13 @@
 import React from "react";
 import GemsToGold from "./home/GemsToGold";
 import GoldToGems from "./home/GoldToGems";
-import TradingPost from "./home/TradingPost";
+import TradingPostCard from "./home/TradingPostCard";
 const Home = () => (
   <div className="container">
     <div className="row">
       <GemsToGold />
       <GoldToGems />
-      <TradingPost />
+      <TradingPostCard />
     </div>
   </div>
 );
