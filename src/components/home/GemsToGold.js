@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGem } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight, faCoins } from "@fortawesome/free-solid-svg-icons";
 import "../../stylesheets/gemsToGold.scss";
+
 const GemsToGold = () => {
   const [defaultGold, setDefaultGold] = useState(0);
   const [gold, setGold] = useState(0);
@@ -13,8 +14,8 @@ const GemsToGold = () => {
     return await guildwars2
       .get("commerce/exchange/gems", {
         params: {
-          quantity: gemsToConvert
-        }
+          quantity: gemsToConvert,
+        },
       })
       .then((response) => {
         return Math.floor(response.data.quantity / 10000);
