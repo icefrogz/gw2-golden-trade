@@ -19,10 +19,11 @@ const SellHistory = () => {
 
       return null;
     }
-    if (apiKey.length > 0) {
+    if (apiKey !== null && apiKey.length > 0) {
       tradingPostTracker();
     }
   }, [apiKey]);
+
   return (
     <table className="table">
       <thead>
