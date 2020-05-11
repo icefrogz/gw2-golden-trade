@@ -1,14 +1,11 @@
 import React from "react";
-import guildwars2 from "../../api/guildwars2";
-const TokenInfo = () => {
-  async function TokenInfo() {
-    await guildwars2.get("/tokeninfo");
-  }
+import { Link } from "react-router-dom";
 
+const TokenInfo = () => {
   return (
-    <div class="dropdown ml-1">
+    <div className="dropdown ml-1">
       <button
-        class="btn btn-secondary dropdown-toggle"
+        className="btn btn-secondary dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"
@@ -17,16 +14,10 @@ const TokenInfo = () => {
       >
         Profile
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">
-          Action
-        </a>
-        <a class="dropdown-item" href="#">
-          Another action
-        </a>
-        <a class="dropdown-item" href="#">
-          Something else here
-        </a>
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <Link className="dropdown-item" to="/token-info">
+          API Keys
+        </Link>
       </div>
     </div>
   );

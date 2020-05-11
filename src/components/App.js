@@ -4,6 +4,7 @@ import Header from "./Header";
 import Home from "./Home";
 import Achievements from "./Achievements";
 import TradingPostMenu from "./TradingPostMenu";
+import UserInfo from "./user/UserInfo";
 const App = () => (
   <>
     <Header />
@@ -17,6 +18,9 @@ const App = () => (
       </Route>
       <Route path="/trading-post">
         <TradingPostMenu />
+      </Route>
+      <Route path="/token-info">
+        <UserInfo />
       </Route>
     </Switch>
   </>
