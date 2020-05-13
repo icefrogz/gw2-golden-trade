@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 const ApiKeyForm = () => {
   const apiKey = localStorage.getItem("apiKey");
@@ -6,12 +6,16 @@ const ApiKeyForm = () => {
 
   // Store data
   function storeData() {
-    var apiKey = inputTest.current.value;
-    localStorage.setItem("apiKey", apiKey);
+    const newApiKey = inputTest.current.value;
+    localStorage.setItem("apiKey", newApiKey);
   }
 
+  useEffect(() => {
+    inputTest.current.value = apiKey;
+  }, [apiKey]);
+
   return (
-    <form onSubmit={storeData}>
+    <form>
       <div className="form-group">
         <label>API Key</label>
         <input
@@ -23,7 +27,9 @@ const ApiKeyForm = () => {
           defaultValue={apiKey}
         />
       </div>
-      <input className="btn-dark btn" type="submit" value="Submit" />
+      <button className="btn-dark btn" type="button" onClick={storeData}>
+        Save
+      </button>
     </form>
   );
 };

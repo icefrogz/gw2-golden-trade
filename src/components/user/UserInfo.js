@@ -7,36 +7,45 @@ import ApiKeyForm from "../shared/ApiKeyForm";
 const UserInfo = () => {
   const apiKey = localStorage.getItem("apiKey");
   const [tokenInfoDet, setTokenInfoDet] = useState({});
-  const [test1, setTest1] = useState([]);
-  async function UserInfo1() {
-    await guildwars2
-      .get("/tokeninfo", {
-        params: {
-          access_token: apiKey,
-        },
-      })
-      .then((response) => {
-        setTokenInfoDet(response.data);
-        setTest1(response.data.permissions);
-      });
-    return null;
-  }
+
   useEffect(() => {
-    UserInfo1();
+    async function userInfo1() {
+      await guildwars2
+        .get("/tokeninfo", {
+          params: {
+            access_token: apiKey,
+          },
+        })
+        .then((response) => {
+          setTokenInfoDet(response.data);
+        });
+      return null;
+    }
+
+    if (apiKey && apiKey.length > 0) {
+      userInfo1();
+    }
   }, [apiKey]);
+
+  function removeData() {
+    // localStorage.removeItem("apiKey");
+    localStorage.setItem("apiKey", "");
+    setTokenInfoDet({});
+  }
 
   return (
     <div className="container">
       <ApiKeyForm />
-      <table class="table">
-        {" "}
+
+      <table className="table mt-1">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Token Name</th>
             <th scope="col">Account </th>
-            <th scope="col">API Keys</th>
             <th scope="col">Permissions</th>
+            <th scope="col">API Keys</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -44,17 +53,35 @@ const UserInfo = () => {
             <th scope="row">1</th>
             <td> {tokenInfoDet.name}</td>
             <td>
-              {" "}
               <AccountInfo />
             </td>
-            <td>{tokenInfoDet.id}</td>
+
             <td>
-              {test1.map((x) => (
-                <span className="ml-1 mr-1">
-                  <FontAwesomeIcon className="mr-1 token-info" icon={faCog} />
-                  {x}
-                </span>
-              ))}
+              {tokenInfoDet.permissions && (
+                <ul className="list-unstyled">
+                  {tokenInfoDet.permissions.map((x) => (
+                    <li className="text-capitalize">
+                      <FontAwesomeIcon
+                        className="mr-1 token-info"
+                        icon={faCog}
+                      />
+                      {x}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </td>
+            <td>{tokenInfoDet.id} </td>
+            <td>
+              {apiKey && apiKey.length > 0 && (
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={removeData}
+                >
+                  Delete Api Key
+                </button>
+              )}
             </td>
           </tr>
         </tbody>
