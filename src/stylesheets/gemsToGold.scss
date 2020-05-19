@@ -1,4 +1,5 @@
-$primary-color: red;
-body {
-  color: $primary-color;
+$token-info-color: green;
+
+.token-info {
+  color: $token-info-color;
 }

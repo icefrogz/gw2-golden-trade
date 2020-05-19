@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import guildwars2 from "../../api/guildwars2";
 import startCase from "lodash/startCase";
 import moment from "moment";
 const ItemDetails = ({ itemId, index, createdAt, purchasedAt, priceAt }) => {
   const [item, setItem] = useState({});
   const toStringConvert = new Date();
-
+  const apiKey = useSelector((state) => state.apiKey.apiKey);
   useEffect(() => {
     async function itemDetailsAllPurpose() {
-      const apiKey = localStorage.getItem("apiKey");
-
       await guildwars2
         .get(`items/${itemId}`, {
           params: {

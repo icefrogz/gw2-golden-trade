@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import guildwars2 from "../../api/guildwars2";
 import ItemDetails from "./ItemDetails";
+import { useSelector } from "react-redux";
 const BuyHistory = () => {
   const [results, setResults] = useState([]);
-  const apiKey = localStorage.getItem("apiKey");
+  const apiKey = useSelector((state) => state.apiKey.apiKey);
 
   useEffect(() => {
     async function tradingPostTracker() {
