@@ -1,13 +1,21 @@
 import React, { useRef, useEffect } from "react";
-
+import { saveApiKey } from "../../actions/apiKey";
+import { useDispatch, useSelector } from "react-redux";
 const ApiKeyForm = () => {
-  const apiKey = localStorage.getItem("apiKey");
+  //first is state of reducer
+  //second is the name of the reducers
+  //third is the key of the value
+  const apiKey = useSelector((state) => state.apiKey.apiKey);
   const inputTest = useRef(null);
+  const dispatch = useDispatch();
 
   // Store data
-  function storeData() {
+  function storeData(e) {
+    e.preventDefault();
     const newApiKey = inputTest.current.value;
-    localStorage.setItem("apiKey", newApiKey);
+    dispatch(saveApiKey(newApiKey));
+
+    // localStorage.setItem("apiKey", newApiKey);
   }
 
   useEffect(() => {

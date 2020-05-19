@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import guildwars2 from "../../api/guildwars2";
 const AccountInfo = () => {
-  const apiKey = localStorage.getItem("apiKey");
+  const apiKey = useSelector((state) => state.apiKey.apiKey);
+
   const [accountInfo, setAccountInfo] = useState({});
 
   useEffect(() => {

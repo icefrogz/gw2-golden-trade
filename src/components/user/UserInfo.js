@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteApiKey } from "../../actions/apiKey";
 import guildwars2 from "../../api/guildwars2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AccountInfo from "./AccountInfo";
 import { faCog, faCopy, faPaste } from "@fortawesome/free-solid-svg-icons";
 import ApiKeyForm from "../shared/ApiKeyForm";
 const UserInfo = () => {
-  const apiKey = localStorage.getItem("apiKey");
+  const apiKey = useSelector((state) => state.apiKey.apiKey);
+  const dispatch = useDispatch();
   const [tokenInfoDet, setTokenInfoDet] = useState({});
 
   useEffect(() => {
@@ -24,13 +27,15 @@ const UserInfo = () => {
 
     if (apiKey && apiKey.length > 0) {
       userInfo1();
+    } else {
+      setTokenInfoDet({});
     }
   }, [apiKey]);
 
-  function removeData() {
+  function removeData(e) {
     // localStorage.removeItem("apiKey");
-    localStorage.setItem("apiKey", "");
-    setTokenInfoDet({});
+    e.preventDefault();
+    dispatch(deleteApiKey());
   }
 
   return (
