@@ -5,6 +5,7 @@ import Home from "./Home";
 import Achievements from "./Achievements";
 import TradingPostMenu from "./TradingPostMenu";
 import UserInfo from "./user/UserInfo";
+import itemDetails from "../components/item/ItemDetails";
 const App = () => (
   <>
     <Header />
@@ -21,6 +22,9 @@ const App = () => (
       </Route>
       <Route path="/token-info">
         <UserInfo />
+      </Route>
+      <Route path="/item-search">
+        <itemDetails />
       </Route>
     </Switch>
   </>

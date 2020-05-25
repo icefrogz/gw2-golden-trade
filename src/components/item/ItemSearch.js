@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import itemList from "../../assets/static/itemsList.json";
 
 const ItemSearch = () => {
@@ -41,7 +42,11 @@ const ItemSearch = () => {
         Submit
       </button>
       {results.map((result1) => {
-        return result1.name;
+        return (
+          <ul className="listGroup">
+            <Link className="list-group-item">{result1.name}</Link>
+          </ul>
+        );
       })}
     </form>
   );
