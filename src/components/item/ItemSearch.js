@@ -41,13 +41,15 @@ const ItemSearch = () => {
       <button type="submit" onClick={onSubmit} className="btn btn-primary">
         Submit
       </button>
-      {results.map((result1) => {
-        return (
-          <ul className="listGroup">
-            <Link className="list-group-item">{result1.name}</Link>
-          </ul>
-        );
-      })}
+      <ul className="list-group">
+        {results.map((result1) => {
+          return (
+            <Link to={`/item/${result1.id}`} className="list-group-item">
+              {result1.name}
+            </Link>
+          );
+        })}
+      </ul>
     </form>
   );
 };
