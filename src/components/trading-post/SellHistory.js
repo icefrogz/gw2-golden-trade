@@ -6,8 +6,8 @@ const SellHistory = () => {
   const apiKey = localStorage.getItem("apiKey");
 
   useEffect(() => {
-    async function tradingPostTracker() {
-      await guildwars2
+    function tradingPostTracker() {
+      guildwars2
         .get("/commerce/transactions/history/sells", {
           params: {
             access_token: apiKey,

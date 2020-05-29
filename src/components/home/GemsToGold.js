@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import guildwars2 from "../../api/guildwars2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGem } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight, faCoins } from "@fortawesome/free-solid-svg-icons";
-import "../../stylesheets/gemsToGold.scss";
+import guildwars2 from "api/guildwars2";
 
 const GemsToGold = () => {
   const [defaultGold, setDefaultGold] = useState(0);
   const [gold, setGold] = useState(0);
   const [gems, setGems] = useState(0);
 
-  async function gemsToGold(gemsToConvert) {
-    return await guildwars2
+  function gemsToGold(gemsToConvert) {
+    return guildwars2
       .get("commerce/exchange/gems", {
         params: {
           quantity: gemsToConvert,

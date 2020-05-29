@@ -7,10 +7,10 @@ const ItemDetails = ({ itemId, index, createdAt, purchasedAt, priceAt }) => {
   const toStringConvert = new Date();
 
   useEffect(() => {
-    async function itemDetailsAllPurpose() {
+    function itemDetailsAllPurpose() {
       const apiKey = localStorage.getItem("apiKey");
 
-      await guildwars2
+      guildwars2
         .get(`items/${itemId}`, {
           params: {
             access_token: apiKey,
