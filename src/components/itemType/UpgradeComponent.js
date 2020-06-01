@@ -4,7 +4,7 @@ import { itemDetails } from "../../helper/itemDetails";
 import { tradingPost } from "../../helper/tradingPost";
 import { itemStats } from "../../helper/itemStats";
 import { goldConverter } from "../../helper/goldConverter";
-const ItemDetails = () => {
+const UpgradeComponent = () => {
   const { id } = useParams();
   const [item, setItem] = useState({});
   const [price, setPrice] = useState({});
@@ -38,16 +38,15 @@ const ItemDetails = () => {
 
       <div>{item.description}</div>
       {item.type}
-      <div> {item.rarity}</div>
-      <div> {item.level}</div>
-      <div> {goldConverter(item.vendor_value)}</div>
+      {item.rarity}
+      {itemStatus.name}
       {item.flags && item.flags.indexOf("AccountBound") > -1 && "Account Bound"}
-      {/* <h1>Current Buy</h1>
+      <h1>Current Buy</h1>
       {price.buys && goldConverter(price.buys.unit_price)}
       <h1>Current Sell</h1>
-      {price.sells && goldConverter(price.sells.unit_price)} */}
+      {price.sells && goldConverter(price.sells.unit_price)}
     </div>
   );
 };
 
-export default ItemDetails;
+export default UpgradeComponent;
