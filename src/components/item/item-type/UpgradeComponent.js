@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { itemDetails } from "../../helper/itemDetails";
-import { tradingPost } from "../../helper/tradingPost";
-import { itemStats } from "../../helper/itemStats";
-import { goldConverter } from "../../helper/goldConverter";
+import { itemDetails } from "../../../helper/itemDetails";
+import { tradingPost } from "../../../helper/tradingPost";
+import { itemStats } from "../../../helper/itemStats";
+import { goldConverter } from "../../../helper/goldConverter";
 const UpgradeComponent = () => {
   const { id } = useParams();
   const [item, setItem] = useState({});
