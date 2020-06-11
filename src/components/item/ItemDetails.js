@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { itemDetails } from "../../helper/itemDetails";
 import { itemStats } from "../../helper/itemStats";
 import { goldConverter } from "../../helper/goldConverter";
-
-import ItemType from './ItemType';
-import CurrentTrading from './item-details/CurrentTrading';
+import Listings from "../trading-post/Listings";
+import ItemType from "./ItemType";
+import CurrentTrading from "./item-details/CurrentTrading";
 
 const ItemDetails = () => {
   const { id } = useParams();
@@ -26,13 +26,13 @@ const ItemDetails = () => {
   }, [item]);
 
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col'>
-          <div className='card'>
-            <div className='card-body'>
-              <div className='d-flex flex-nowrap'>
-                <img className='mr-2' src={item.icon} />
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <div className="d-flex flex-nowrap">
+                <img className="mr-2" src={item.icon} />
                 <h1>{item.name}</h1>
               </div>
               <div>{item.description}</div>
@@ -40,16 +40,19 @@ const ItemDetails = () => {
               <ItemType type={item.type} details={item.details} />
               <div> {item.rarity}</div>
               <div>{`Level: ${item.level}`}</div>
-              <div> {goldConverter(item.vendor_value)}</div>
-              {item.flags && item.flags.indexOf("AccountBound") > -1 && "Account Bound"}
+              <div> Vendor Value : {goldConverter(item.vendor_value)}</div>
+              {item.flags &&
+                item.flags.indexOf("AccountBound") > -1 &&
+                "Account Bound"}
             </div>
           </div>
         </div>
       </div>
-      { (item.flags && item.flags.indexOf("AccountBound") === -1) && (
-        <div className='row'>
-          <div className='col'>
-            <CurrentTrading itemId={item.id}/>
+      {item.flags && item.flags.indexOf("AccountBound") === -1 && (
+        <div className="row">
+          <div className="col">
+            <CurrentTrading itemId={item.id} />
+            <Listings itemId={item.id} />
           </div>
         </div>
       )}
