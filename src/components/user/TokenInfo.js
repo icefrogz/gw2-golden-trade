@@ -5,7 +5,7 @@ const TokenInfo = () => {
   return (
     <div className="dropdown ml-1">
       <button
-        className="btn btn-secondary dropdown-toggle"
+        className="btn btn-secondary dropdown-toggle btn-sm"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"

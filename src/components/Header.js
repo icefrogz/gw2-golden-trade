@@ -2,9 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
 import TokenInfo from "./user/TokenInfo";
+import ItemSearch from "./item/ItemSearch";
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg  navbar-dark bg-dark shadow-sm">
+    <nav className="navbar navbar-expand-md  navbar-dark bg-dark shadow-sm">
       <div className="container">
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">
@@ -25,6 +26,9 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <TokenInfo />
+            </li>
+            <li className="nav-item">
+              <ItemSearch />
             </li>
           </ul>
         </div>

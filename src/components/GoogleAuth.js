@@ -51,13 +51,21 @@ const GoogleAuth = () => {
     return null;
   } else if (isSignedIn) {
     return (
-      <button onClick={onSignOut} type="button" className="btn btn-danger ">
+      <button
+        onClick={onSignOut}
+        type="button"
+        className="btn btn-danger btn-sm"
+      >
         Sign Out
       </button>
     );
   } else {
     return (
-      <button onClick={onSignIn} type="button" className="btn btn-primary">
+      <button
+        onClick={onSignIn}
+        type="button"
+        className="btn btn-primary btn-sm"
+      >
         Sign in with <FontAwesomeIcon className="mr-2" icon={faGoogle} />
       </button>
     );

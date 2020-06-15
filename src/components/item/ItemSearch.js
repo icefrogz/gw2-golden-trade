@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import itemList from "../../assets/static/itemsList.json";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const ItemSearch = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -19,7 +20,7 @@ const ItemSearch = () => {
       const itemResults = itemList.filter((item) => {
         return regex.test(item.name);
       });
-      $(kataJennifer.current).dropdown("toggle");
+      $(kataJennifer.current).dropdown("show");
       setResults(itemResults);
     }
     if (query.length > 1) {
@@ -28,9 +29,29 @@ const ItemSearch = () => {
   }, [query]);
   return (
     <form>
-      <div className="form-group">
-        <label htmlFor="item-search">Item Search</label>
-        <div className="dropdown">
+      <div className="form-group ">
+        <div className="input-group input-group-sm">
+          <input
+            type="text"
+            className="form-control "
+            id="item-search"
+            aria-describedby="itemSearch"
+            placeholder="Enter item name"
+            ref={searchInput}
+            onChange={onChange}
+            autocomplete="off"
+          />
+          <div className="input-group-append">
+            <button
+              type="submit"
+              onChange={onChange}
+              className="btn btn-outline-secondary"
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </div>
+        </div>
+        <div className="dropdown ">
           <button
             className="btn btn-outline-secondary dropdown-toggle"
             type="button"
@@ -52,21 +73,8 @@ const ItemSearch = () => {
               );
             })}
           </div>
-          <input
-            type="text"
-            className="form-control "
-            id="item-search"
-            aria-describedby="itemSearch"
-            placeholder="Enter item name"
-            ref={searchInput}
-            onChange={onChange}
-          />
         </div>
       </div>
-
-      <button type="submit" onChange={onChange} className="btn btn-primary">
-        Submit
-      </button>
     </form>
   );
 };
