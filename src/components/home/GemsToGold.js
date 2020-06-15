@@ -3,7 +3,6 @@ import guildwars2 from "../../api/guildwars2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGem } from "@fortawesome/free-regular-svg-icons";
 import { faArrowRight, faCoins } from "@fortawesome/free-solid-svg-icons";
-import "../../stylesheets/gemsToGold.scss";
 
 const GemsToGold = () => {
   const [defaultGold, setDefaultGold] = useState(0);

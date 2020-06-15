@@ -6,6 +6,9 @@ import Achievements from "./Achievements";
 import TradingPostMenu from "./TradingPostMenu";
 import UserInfo from "./user/UserInfo";
 import ItemDetails from "../components/item/ItemDetails";
+
+import "../assets/stylesheets/application.scss";
+
 const App = () => (
   <>
     <Header />
