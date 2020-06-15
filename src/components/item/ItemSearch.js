@@ -6,8 +6,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const ItemSearch = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [showDropdown, setShow] = useState(false);
   const searchInput = useRef();
-  const kataJennifer = useRef();
+
   const $ = window.$;
   function onChange(e) {
     e.preventDefault();
@@ -20,16 +21,20 @@ const ItemSearch = () => {
       const itemResults = itemList.filter((item) => {
         return regex.test(item.name);
       });
-      $(kataJennifer.current).dropdown("show");
+
       setResults(itemResults);
     }
     if (query.length > 1) {
       filterItem();
+      setShow(true);
+    } else {
+      setResults([]);
+      setShow(false);
     }
   }, [query]);
   return (
     <form>
-      <div className="form-group ">
+      <div className="form-group mb-0">
         <div className="input-group input-group-sm">
           <input
             type="text"
@@ -41,6 +46,23 @@ const ItemSearch = () => {
             onChange={onChange}
             autocomplete="off"
           />
+          <div
+            className="dropdown-menu show"
+            style={{
+              display: showDropdown ? "block" : "none",
+              overflow: "auto",
+              maxHeight: "300px",
+            }}
+          >
+            {results.map((result1) => {
+              return (
+                <Link className="dropdown-item" to={`/item/${result1.id}`}>
+                  <img style={{ height: "24px" }} src={result1.icon} />{" "}
+                  {result1.name}
+                </Link>
+              );
+            })}
+          </div>
           <div className="input-group-append">
             <button
               type="submit"
@@ -49,29 +71,6 @@ const ItemSearch = () => {
             >
               <FontAwesomeIcon icon={faSearch} />
             </button>
-          </div>
-        </div>
-        <div className="dropdown ">
-          <button
-            className="btn btn-outline-secondary dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-            style={{ visibility: "hidden" }}
-            ref={kataJennifer}
-          />
-
-          <div className="dropdown-menu">
-            {results.map((result1) => {
-              return (
-                <Link
-                  className="dropdown-item"
-                  style={{ fontSize: "14px" }}
-                  to={`/item/${result1.id}`}
-                >
-                  {result1.name}
-                </Link>
-              );
-            })}
           </div>
         </div>
       </div>

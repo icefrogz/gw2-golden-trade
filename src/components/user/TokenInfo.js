@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const TokenInfo = () => {
   return (
-    <div className="dropdown ml-1">
+    <div className="dropdown ">
       <button
         className="btn btn-secondary dropdown-toggle btn-sm"
         type="button"

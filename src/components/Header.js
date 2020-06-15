@@ -6,8 +6,19 @@ import ItemSearch from "./item/ItemSearch";
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-md  navbar-dark bg-dark shadow-sm">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#topLeft"
+        aria-controls="topLeft"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
       <div className="container">
-        <div className="collapse navbar-collapse">
+        <div className="collapse navbar-collapse" id="topLeft">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink exact className="nav-link" to="/">
@@ -20,17 +31,15 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <ul className="navbar-nav">
-            <li className="nav-item">
+          <ul className="navbar-nav ">
+            <li className="nav-item mr-1">
               <GoogleAuth />
             </li>
-            <li className="nav-item">
+            <li className="nav-item mr-1">
               <TokenInfo />
             </li>
-            <li className="nav-item">
-              <ItemSearch />
-            </li>
           </ul>
+          <ItemSearch />
         </div>
       </div>
     </nav>
