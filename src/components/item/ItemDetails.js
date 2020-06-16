@@ -29,13 +29,13 @@ const ItemDetails = () => {
     <div className="container">
       <div className="row">
         <div className="col">
-          <div className="card">
+          <div className="card item-details">
             <div className="card-body">
               <div className="d-flex flex-nowrap">
                 <img className="mr-2" src={item.icon} />
                 <h1>{item.name}</h1>
               </div>
-              <div>{item.description}</div>
+              <div dangerouslySetInnerHTML={{ __html: item.description }} />
               <div>{item.type}</div>
               <ItemType type={item.type} details={item.details} />
               <div> {item.rarity}</div>

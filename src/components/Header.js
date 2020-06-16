@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
 import TokenInfo from "./user/TokenInfo";
-import ItemSearch from "./item/ItemSearch";
+import ItemSearch from "./header/ItemSearch";
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-md  navbar-dark bg-dark shadow-sm">
