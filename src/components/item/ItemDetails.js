@@ -36,9 +36,9 @@ const ItemDetails = () => {
                 <h1>{item.name}</h1>
               </div>
               <div dangerouslySetInnerHTML={{ __html: item.description }} />
-              <div>{item.type}</div>
               <ItemType type={item.type} details={item.details} />
               <div> {item.rarity}</div>
+              <div>{item.type}</div>
               <div>{`Level: ${item.level}`}</div>
               <div> Vendor Value : {goldConverter(item.vendor_value)}</div>
               {item.flags &&

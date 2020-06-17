@@ -9,7 +9,6 @@ const ItemSearch = () => {
   const [showDropdown, setShow] = useState(false);
   const searchInput = useRef();
 
-  const $ = window.$;
   function onChange(e) {
     e.preventDefault();
     setQuery(searchInput.current.value);

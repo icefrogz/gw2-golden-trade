@@ -1,0 +1,16 @@
+$rarity: (
+  "junk": #aaa,
+  "basic": #000,
+  "fine": #62a4da,
+  "masterWork": #1a9306,
+  "rare": #fcd00b,
+  "exotic": #ffa405,
+  "ascended": #fb3e8d,
+  "legendary": #4c139d,
+);
+
+@each $rare, $col in $rarity {
+  .text-#{$rare} {
+    color: $col;
+  }
+}
