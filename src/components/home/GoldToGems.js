@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import guildwars2 from "../../api/guildwars2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGem } from "@fortawesome/free-regular-svg-icons";
-import { faArrowRight, faCoins } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const GoldToGems = () => {
   const [defaultGems, setDefaultGems] = useState(0);
@@ -42,8 +41,8 @@ const GoldToGems = () => {
           <form>
             <div className="form-group ">
               <label htmlFor="coins" className="m-2">
-                <FontAwesomeIcon className="mr-2" icon={faCoins} />
                 <span>{gold}</span>
+                <i className='gw2-icon gw2-icon-gold' />
               </label>
 
               <label htmlFor="exchangeAlt" className="m-2">
@@ -51,8 +50,8 @@ const GoldToGems = () => {
               </label>
 
               <label htmlFor="faGem" className="m-2">
-                <FontAwesomeIcon className="mr-2" icon={faGem} />
                 <span>{gems}</span>
+                <i className='gw2-icon gw2-icon-gem' />
               </label>
             </div>
 

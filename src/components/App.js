@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import Home from "./Home";
 import Achievements from "./Achievements";
-import TradingPostMenu from "./TradingPostMenu";
+import TradingPost from "./TradingPost";
 import UserInfo from "./user/UserInfo";
 import ItemDetails from "../components/item/ItemDetails";
 
@@ -21,7 +21,7 @@ const App = () => (
         <Achievements />
       </Route>
       <Route path="/trading-post">
-        <TradingPostMenu />
+        <TradingPost />
       </Route>
       <Route path="/token-info">
         <UserInfo />

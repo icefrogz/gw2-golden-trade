@@ -10,9 +10,6 @@ const Home = () => (
       <GoldToGems />
       <TradingPostCard />
     </div>
-    {/* <div className="row">
-      <ItemSearch />
-    </div> */}
   </div>
 );
 

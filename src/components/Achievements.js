@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import guildwars2 from "../api/guildwars2";
-import AchievementInfo from "./AchievementInfo";
+import AchievementInfo from "./achievements/AchievementInfo";
 const App = () => {
   const [achievementsDaily, setAchievementsDaily] = useState({});
   useEffect(() => {
     const fetchAchievementsDaily = async () => {
-      const response = await guildwars2.get("achievements/daily", {
-        params: {},
-      });
+      const response = await guildwars2.get("achievements/daily");
 
       setAchievementsDaily(response.data);
     };

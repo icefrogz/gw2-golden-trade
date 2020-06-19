@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn, signOut } from "../actions/auth";
+import { signIn, signOut } from "../../actions/auth";
 const KEY =
   "862357562992-6ef84pk3baeh8o71hknmqh6d7iqvquaq.apps.googleusercontent.com";
 
@@ -53,8 +53,8 @@ const GoogleAuth = () => {
     return (
       <button
         onClick={onSignOut}
-        type="button"
-        className="btn btn-danger btn-sm"
+        type='button'
+        className='btn btn-danger btn-sm'
       >
         Sign Out
       </button>
@@ -63,10 +63,10 @@ const GoogleAuth = () => {
     return (
       <button
         onClick={onSignIn}
-        type="button"
-        className="btn btn-primary btn-sm"
+        type='button'
+        className='btn btn-primary btn-sm'
       >
-        Sign in with <FontAwesomeIcon className="mr-2" icon={faGoogle} />
+        Sign in with <FontAwesomeIcon className='mr-2' icon={faGoogle} />
       </button>
     );
   }

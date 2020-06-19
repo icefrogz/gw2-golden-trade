@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import guildwars2 from "../api/guildwars2";
+import guildwars2 from "../../api/guildwars2";
+
 const AchievementInfo = ({ title, sections }) => {
   const [dailies, setDailies] = useState([]);
   useEffect(() => {
