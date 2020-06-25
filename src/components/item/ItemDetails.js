@@ -9,7 +9,7 @@ import CurrentTrading from "./item-details/CurrentTrading";
 
 const ItemDetails = () => {
   const { id } = useParams();
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState(null);
   const [itemStatus, setItemStats] = useState({});
   useEffect(() => {
     itemDetails(id).then((response) => {
@@ -18,14 +18,14 @@ const ItemDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    if (item.details && item.details.infix_upgrade) {
+    if (item && item.details && item.details.infix_upgrade) {
       itemStats(item.details.infix_upgrade.id).then((response) => {
         setItemStats(response);
       });
     }
   }, [item]);
 
-  return (
+  return item ? (
     <div className="container">
       <div className="row">
         <div className="col">
@@ -33,13 +33,15 @@ const ItemDetails = () => {
             <div className="card-body">
               <div className="d-flex flex-nowrap">
                 <img className="mr-2" src={item.icon} />
-                <h1>{item.name}</h1>
+                <h1 className={`text-${item.rarity.toLowerCase()}`}>
+                  {item.name}
+                </h1>
               </div>
               <div dangerouslySetInnerHTML={{ __html: item.description }} />
               <ItemType type={item.type} details={item.details} />
               <div> {item.rarity}</div>
               <div>{item.type}</div>
-              <div>{`Level: ${item.level}`}</div>
+              <div>{`Required Level: ${item.level}`}</div>
               <div> Vendor Value : {goldConverter(item.vendor_value)}</div>
               {item.flags &&
                 item.flags.indexOf("AccountBound") > -1 &&
@@ -57,7 +59,7 @@ const ItemDetails = () => {
         </div>
       )}
     </div>
-  );
+  ) : null;
 };
 
 export default ItemDetails;
