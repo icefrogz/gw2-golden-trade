@@ -6,7 +6,7 @@ import Achievements from "./Achievements";
 import TradingPost from "./TradingPost";
 import UserInfo from "./user/UserInfo";
 import ItemDetails from "../components/item/ItemDetails";
-
+import ItemSearch from "../components/item/item-details/ItemSearch";
 import "../assets/stylesheets/application.scss";
 
 const App = () => (
@@ -25,6 +25,9 @@ const App = () => (
       </Route>
       <Route path="/token-info">
         <UserInfo />
+      </Route>
+      <Route path="/item/tp/search">
+        <ItemSearch />
       </Route>
       <Route path="/item/:id">
         <ItemDetails />
