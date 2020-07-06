@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import itemList from "../../../assets/static/itemsList.json";
 import { tradingPost } from "../../../helper/tradingPost";
 import chunk from "lodash/chunk";
 import queryString from "query-string";
+import { goldConverter } from "../../../helper/goldConverter";
+
 const ItemSearch = () => {
   const { search } = useLocation();
+  const goldConverter1 = goldConverter;
+  const $ = window.$;
   const { name: query = "" } = queryString.parse(search);
   const [results, setResults] = useState([]);
   const [buySell, setBuySell] = useState([]);
-
+  const table = useRef();
   useEffect(() => {
     function filterItem() {
       const regex = new RegExp(query, "i");
@@ -30,6 +34,28 @@ const ItemSearch = () => {
     });
     if (imTryingToSay.length > 0) {
       tradingPost(imTryingToSay).then((response) => {
+        const newData = results.reduce((array, test) => {
+          const somethingElse = response.find((ele) => ele.id == test.id);
+          if (somethingElse) {
+            array.push({
+              name: test.name,
+              sellsPrice: somethingElse.sells.unit_price,
+              buysPrice: somethingElse.buys.unit_price,
+            });
+          }
+          return array;
+        }, []);
+        $(table.current).bootstrapTable({
+          data: newData,
+          pagination: true,
+          sortName: "name",
+          sortOrder: "asc",
+          columns:[
+            {
+              
+            }
+          ]
+        });
         setBuySell(response);
         console.log(response);
       });
@@ -37,29 +63,24 @@ const ItemSearch = () => {
   }, [results]);
   return (
     <div className="container">
-      <table className="table">
+      <table ref={table} className="table">
         <thead>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Sell</th>
-            <th scope="col">Buy</th>
+            <th data-field="name" data-sortable="true">
+              Name
+            </th>
+            <th
+              data-field="sellsPrice"
+              data-formatter={goldConverter}
+              data-sortable="true"
+            >
+              Sells
+            </th>
+            <th data-field="buysPrice" data-sortable="true">
+              Buys
+            </th>
           </tr>
         </thead>
-        <tbody>
-          {results.reduce((array, test) => {
-            const somethingElse = buySell.find((ele) => ele.id == test.id);
-            if (somethingElse) {
-              array.push(
-                <tr>
-                  <td>{test.name} </td>
-
-                  <td>{somethingElse.sells.unit_price}</td>
-                </tr>
-              );
-            }
-            return array;
-          }, [])}
-        </tbody>
       </table>
     </div>
   );

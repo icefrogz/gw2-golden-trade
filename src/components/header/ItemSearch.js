@@ -25,7 +25,7 @@ const ItemSearch = () => {
 
   useEffect(() => {
     function filterItem() {
-      const MAX_RESULTS_COUNT = 5;
+      const MAX_RESULTS_COUNT = 10;
       const regex = new RegExp(query, "i");
       const itemsChunk = chunk(itemList, 100);
       let searchResults = [];
@@ -94,7 +94,7 @@ const ItemSearch = () => {
           <div className="input-group-append">
             <Link
               to={{
-                pathname: "item/tp/search",
+                pathname: "/item/tp/search",
                 search: `?name=${query}`,
               }}
               className="btn btn-outline-secondary"
