@@ -14,35 +14,20 @@ export const goldConverter = (coinsToConvert) => {
     return (
       <span>
         {gold}
-        <img
-          className="item-img"
-          src="https://render.guildwars2.com/file/090A980A96D39FD36FBB004903644C6DBEFB1FFB/156904.png"
-        />
+        <i className="gw2-icon gw2-icon-gold" />
         {silver}
-        <img
-          className="item-img"
-          src="https://render.guildwars2.com/file/E5A2197D78ECE4AE0349C8B3710D033D22DB0DA6/156907.png"
-        />
+        <i className="gw2-icon gw2-icon-silver" />
         {copper}
-        <img
-          className="item-img"
-          src="https://render.guildwars2.com/file/6CF8F96A3299CFC75D5CC90617C3C70331A1EF0E/156902.png"
-        />
+        <i className="gw2-icon gw2-icon-copper" />
       </span>
     );
   } else if (silver > 1) {
     return (
       <span>
         {silver}
-        <img
-          className="item-img"
-          src="https://render.guildwars2.com/file/E5A2197D78ECE4AE0349C8B3710D033D22DB0DA6/156907.png"
-        />
+        <i className="gw2-icon gw2-icon-silver" />
         {copper}
-        <img
-          className="item-img"
-          src="https://render.guildwars2.com/file/6CF8F96A3299CFC75D5CC90617C3C70331A1EF0E/156902.png"
-        />
+        <i className="gw2-icon gw2-icon-copper" />
       </span>
     );
   }
@@ -50,10 +35,37 @@ export const goldConverter = (coinsToConvert) => {
   return (
     <span>
       {copper}
-      <img
-        className="item-img"
-        src="https://render.guildwars2.com/file/6CF8F96A3299CFC75D5CC90617C3C70331A1EF0E/156902.png"
-      />
+      <i className="gw2-icon gw2-icon-copper" />
     </span>
+  );
+};
+
+export const goldConverterString = (coinsToConvert) => {
+  const [gold, silver, copper] = coinsToGold(coinsToConvert);
+
+  if (gold > 1) {
+    return (
+      "<span>" +
+      gold +
+      '<i class="gw2-icon gw2-icon-gold"></i>' +
+      silver +
+      '<i class="gw2-icon gw2-icon-silver"></i>' +
+      copper +
+      '<i class="gw2-icon gw2-icon-copper"></i>' +
+      "</span>"
+    );
+  } else if (silver > 1) {
+    return (
+      "<span>" +
+      silver +
+      '<i class="gw2-icon gw2-icon-silver"></i>' +
+      copper +
+      '<i class="gw2-icon gw2-icon-copper"></i>' +
+      "</span>"
+    );
+  }
+
+  return (
+    "<span>" + copper + '<i class="gw2-icon gw2-icon-copper"></i>' + "</span>"
   );
 };

@@ -1,14 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
+import ReactDOMServer from "react-dom/server";
 import { useLocation } from "react-router-dom";
 import itemList from "../../../assets/static/itemsList.json";
 import { tradingPost } from "../../../helper/tradingPost";
 import chunk from "lodash/chunk";
 import queryString from "query-string";
-import { goldConverter } from "../../../helper/goldConverter";
+import { goldConverterString } from "../../../helper/goldConverter";
 
 const ItemSearch = () => {
   const { search } = useLocation();
-  const goldConverter1 = goldConverter;
+
   const $ = window.$;
   const { name: query = "" } = queryString.parse(search);
   const [results, setResults] = useState([]);
@@ -29,16 +30,18 @@ const ItemSearch = () => {
   }, [query]);
 
   useEffect(() => {
-    const imTryingToSay = results.map((testResult) => {
-      return testResult.id;
+    const itemList = results.map((itemResult) => {
+      return itemResult.id;
     });
-    if (imTryingToSay.length > 0) {
-      tradingPost(imTryingToSay).then((response) => {
-        const newData = results.reduce((array, test) => {
-          const somethingElse = response.find((ele) => ele.id == test.id);
+    if (itemList.length > 0) {
+      tradingPost(itemList).then((response) => {
+        const newData = results.reduce((array, item) => {
+          const somethingElse = response.find((ele) => ele.id == item.id);
           if (somethingElse) {
             array.push({
-              name: test.name,
+              name: item.name,
+              rarity: item.rarity,
+              icon: item.icon,
               sellsPrice: somethingElse.sells.unit_price,
               buysPrice: somethingElse.buys.unit_price,
             });
@@ -50,11 +53,39 @@ const ItemSearch = () => {
           pagination: true,
           sortName: "name",
           sortOrder: "asc",
-          columns:[
+          columns: [
             {
-              
-            }
-          ]
+              title: "Name",
+              field: "name",
+              formatter: (value, row) => {
+                return (
+                  "<img class='item-img-sm border-" +
+                  row.rarity.toLowerCase() +
+                  "' src='" +
+                  row.icon +
+                  "'></img>" +
+                  "<span class='text-" +
+                  row.rarity.toLowerCase() +
+                  "'>" +
+                  value +
+                  "</span>"
+                );
+              },
+              sortable: true,
+            },
+            {
+              title: "Sells Price",
+              field: "sellsPrice",
+              sortable: true,
+              formatter: goldConverterString,
+            },
+            {
+              title: "Buys Price",
+              field: "buysPrice",
+              sortable: true,
+              formatter: goldConverterString,
+            },
+          ],
         });
         setBuySell(response);
         console.log(response);
@@ -63,25 +94,7 @@ const ItemSearch = () => {
   }, [results]);
   return (
     <div className="container">
-      <table ref={table} className="table">
-        <thead>
-          <tr>
-            <th data-field="name" data-sortable="true">
-              Name
-            </th>
-            <th
-              data-field="sellsPrice"
-              data-formatter={goldConverter}
-              data-sortable="true"
-            >
-              Sells
-            </th>
-            <th data-field="buysPrice" data-sortable="true">
-              Buys
-            </th>
-          </tr>
-        </thead>
-      </table>
+      <table ref={table} className="table"></table>
     </div>
   );
 };
